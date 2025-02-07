@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.sunil_poudel.smemory"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sunil_poudel.smemory"
