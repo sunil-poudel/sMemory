@@ -88,7 +88,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-
         image01 = findViewById(R.id.image_01);
         image02 = findViewById(R.id.image_02);
         image03 = findViewById(R.id.image_03);
