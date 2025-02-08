@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button twoPlayerButton;
     private Button threePlayerButton;
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
+
+        Random random = new Random();
+        int randomKey = random.nextInt(2);
+        intent.putExtra("random_key", String.valueOf(randomKey));
 
         if (v.getId() == R.id.two_players_button) {
             intent.putExtra("player_count", "2");

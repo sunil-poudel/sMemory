@@ -2,6 +2,7 @@ package com.sunil_poudel.smemory;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,6 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,6 +59,27 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        Random random = new Random();
+
+        int[] randomFlagsTemp = generateUniqueRandomNumbers(12, 0, 253);
+        int[] randomFruitsAndVegetablesTemp = generateUniqueRandomNumbers(12, 0, 73);
+
+//        Log.d("SUNIL SAYS", Arrays.toString(randomFlagsTemp));
+//        Log.d("SUNIL SAYS", Arrays.toString(randomFruitsAndVegetablesTemp));
+
+        List<Integer> flagsList = new ArrayList<>();
+        List<Integer> fruitsAndVegetablesList = new ArrayList<>();
+        for(int i=0; i<24; i++){
+            flagsList.add(randomFlagsTemp[(i%12)]);
+            fruitsAndVegetablesList.add(randomFruitsAndVegetablesTemp[(i%12)]);
+        }
+        Collections.shuffle(flagsList, random);
+        Collections.shuffle(fruitsAndVegetablesList, random);
+
+        int[] randomFlagsFinal = flagsList.stream().mapToInt(Integer::intValue).toArray();
+        int[] randomFruitsAndVegetablesFinal = fruitsAndVegetablesList.stream().mapToInt(Integer::intValue).toArray();
+
+
         numberOfPlayers = findViewById(R.id.number_of_players);
 
         playerOneButton = findViewById(R.id.button_player_1);
@@ -67,6 +95,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         String playersCount = intent.getStringExtra("player_count");
         int playersCountInt = Integer.parseInt(playersCount);
+        int randomKey = Integer.parseInt(intent.getStringExtra("random_key"));
 
         numberOfPlayers.setText("Number of players: "+playersCount);
 
@@ -87,6 +116,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 playerFourButton.setVisibility(View.VISIBLE);
                 break;
         }
+
+
 
         image01 = findViewById(R.id.image_01);
         image02 = findViewById(R.id.image_02);
@@ -196,5 +227,27 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.image_24) {
             // Handle image_24 click
         }
+    }
+
+    public static int[] generateUniqueRandomNumbers(int count, int min, int max) {
+
+        List<Integer> numbers = new ArrayList<>();
+        Random random = new Random();
+
+        // generate all numbers
+        for (int i = min; i <= max; i++) {
+            numbers.add(i);
+        }
+
+        // Shuffle the list to make it random
+        Collections.shuffle(numbers, random);
+
+        // Select the first number of numbers needed
+        int[] result = new int[count];
+        for (int i = 0; i < count; i++) {
+            result[i] = numbers.get(i);
+        }
+
+        return result;
     }
 }
