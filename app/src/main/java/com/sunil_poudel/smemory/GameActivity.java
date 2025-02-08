@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.sunil_poudel.smemory.ImageAssets.Images;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,6 +54,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton image22;
     private ImageButton image23;
     private ImageButton image24;
+    private int[] imageResources = new int[24];
 
 
     @Override
@@ -117,6 +120,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+        if(randomKey==0){
+            for(int i=0;i <24; i++) {
+                imageResources[i] = Images.FLAG[randomFlagsFinal[i]];
+            }
+        } else if(randomKey==1) {
+            for(int i=0;i <24; i++) {
+                imageResources[i] = Images.FRUIT_OR_VEG[randomFruitsAndVegetablesFinal[i]];
+            }
+        }
 
 
         image01 = findViewById(R.id.image_01);
@@ -171,7 +183,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
     }
 
     //fruits and vegetables image link: https://www.squaremeals.org/Portals/8/files/FFVP/100%20fruits%20and%20veggies.pdf
@@ -179,54 +190,54 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.image_01) {
-            // Handle image_01 click
-        } else if (v.getId() == R.id.image_02) {
-            // Handle image_02 click
-        } else if (v.getId() == R.id.image_03) {
-            // Handle image_03 click
-        } else if (v.getId() == R.id.image_04) {
-            // Handle image_04 click
-        } else if (v.getId() == R.id.image_05) {
-            // Handle image_05 click
-        } else if (v.getId() == R.id.image_06) {
-            // Handle image_06 click
-        } else if (v.getId() == R.id.image_07) {
-            // Handle image_07 click
-        } else if (v.getId() == R.id.image_08) {
-            // Handle image_08 click
-        } else if (v.getId() == R.id.image_09) {
-            // Handle image_09 click
-        } else if (v.getId() == R.id.image_10) {
-            // Handle image_10 click
-        } else if (v.getId() == R.id.image_11) {
-            // Handle image_11 click
-        } else if (v.getId() == R.id.image_12) {
-            // Handle image_12 click
-        } else if (v.getId() == R.id.image_13) {
-            // Handle image_13 click
-        } else if (v.getId() == R.id.image_14) {
-            // Handle image_14 click
-        } else if (v.getId() == R.id.image_15) {
-            // Handle image_15 click
-        } else if (v.getId() == R.id.image_16) {
-            // Handle image_16 click
-        } else if (v.getId() == R.id.image_17) {
-            // Handle image_17 click
-        } else if (v.getId() == R.id.image_18) {
-            // Handle image_18 click
-        } else if (v.getId() == R.id.image_19) {
-            // Handle image_19 click
-        } else if (v.getId() == R.id.image_20) {
-            // Handle image_20 click
-        } else if (v.getId() == R.id.image_21) {
-            // Handle image_21 click
-        } else if (v.getId() == R.id.image_22) {
-            // Handle image_22 click
-        } else if (v.getId() == R.id.image_23) {
-            // Handle image_23 click
-        } else if (v.getId() == R.id.image_24) {
-            // Handle image_24 click
-        }
+        image01.setImageResource(imageResources[0]);
+    } else if (v.getId() == R.id.image_02) {
+        image02.setImageResource(imageResources[1]);
+    } else if (v.getId() == R.id.image_03) {
+        image03.setImageResource(imageResources[2]);
+    } else if (v.getId() == R.id.image_04) {
+        image04.setImageResource(imageResources[3]);
+    } else if (v.getId() == R.id.image_05) {
+        image05.setImageResource(imageResources[4]);
+    } else if (v.getId() == R.id.image_06) {
+        image06.setImageResource(imageResources[5]);
+    } else if (v.getId() == R.id.image_07) {
+        image07.setImageResource(imageResources[6]);
+    } else if (v.getId() == R.id.image_08) {
+        image08.setImageResource(imageResources[7]);
+    } else if (v.getId() == R.id.image_09) {
+        image09.setImageResource(imageResources[8]);
+    } else if (v.getId() == R.id.image_10) {
+        image10.setImageResource(imageResources[9]);
+    } else if (v.getId() == R.id.image_11) {
+        image11.setImageResource(imageResources[10]);
+    } else if (v.getId() == R.id.image_12) {
+        image12.setImageResource(imageResources[11]);
+    } else if (v.getId() == R.id.image_13) {
+        image13.setImageResource(imageResources[12]);
+    } else if (v.getId() == R.id.image_14) {
+        image14.setImageResource(imageResources[13]);
+    } else if (v.getId() == R.id.image_15) {
+        image15.setImageResource(imageResources[14]);
+    } else if (v.getId() == R.id.image_16) {
+        image16.setImageResource(imageResources[15]);
+    } else if (v.getId() == R.id.image_17) {
+        image17.setImageResource(imageResources[16]);
+    } else if (v.getId() == R.id.image_18) {
+        image18.setImageResource(imageResources[17]);
+    } else if (v.getId() == R.id.image_19) {
+        image19.setImageResource(imageResources[18]);
+    } else if (v.getId() == R.id.image_20) {
+        image20.setImageResource(imageResources[19]);
+    } else if (v.getId() == R.id.image_21) {
+        image21.setImageResource(imageResources[20]);
+    } else if (v.getId() == R.id.image_22) {
+        image22.setImageResource(imageResources[21]);
+    } else if (v.getId() == R.id.image_23) {
+        image23.setImageResource(imageResources[22]);
+    } else if (v.getId() == R.id.image_24) {
+        image24.setImageResource(imageResources[23]);
+    }
     }
 
     public static int[] generateUniqueRandomNumbers(int count, int min, int max) {
@@ -249,5 +260,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return result;
+    }
+
+    public void startGame(int randomKey, int[] randomFlagsFinal, int[] randomFruitsAndVegetablesFinal){
+
+
     }
 }
