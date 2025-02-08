@@ -30,6 +30,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button playerThreeButton;
     private Button playerFourButton;
 
+    private TextView scorePlayerOne;
+    private TextView scorePlayerTwo;
+    private TextView scorePlayerThree;
+    private TextView scorePlayerFour;
+
     private ImageButton image01;
     private ImageButton image02;
     private ImageButton image03;
@@ -90,10 +95,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerThreeButton = findViewById(R.id.button_player_3);
         playerFourButton = findViewById(R.id.button_player_4);
 
+        scorePlayerOne = findViewById(R.id.score_player_1);
+        scorePlayerTwo = findViewById(R.id.score_player_2);
+        scorePlayerThree = findViewById(R.id.score_player_3);
+        scorePlayerFour = findViewById(R.id.score_player_4);
+
         playerOneButton.setVisibility(View.INVISIBLE);
         playerTwoButton.setVisibility(View.INVISIBLE);
         playerThreeButton.setVisibility(View.INVISIBLE);
         playerFourButton.setVisibility(View.INVISIBLE);
+
+        scorePlayerOne.setVisibility(View.INVISIBLE);
+        scorePlayerTwo.setVisibility(View.INVISIBLE);
+        scorePlayerThree.setVisibility(View.INVISIBLE);
+        scorePlayerFour.setVisibility(View.INVISIBLE);
 
         Intent intent = getIntent();
         String playersCount = intent.getStringExtra("player_count");
@@ -106,17 +121,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             case 2:
                 playerOneButton.setVisibility(View.VISIBLE);
                 playerTwoButton.setVisibility(View.VISIBLE);
+                scorePlayerOne.setVisibility(View.VISIBLE);
+                scorePlayerTwo.setVisibility(View.VISIBLE);
                 break;
             case 3:
                 playerOneButton.setVisibility(View.VISIBLE);
                 playerTwoButton.setVisibility(View.VISIBLE);
                 playerThreeButton.setVisibility(View.VISIBLE);
+                scorePlayerOne.setVisibility(View.VISIBLE);
+                scorePlayerTwo.setVisibility(View.VISIBLE);
+                scorePlayerThree.setVisibility(View.VISIBLE);
                 break;
             case 4:
                 playerOneButton.setVisibility(View.VISIBLE);
                 playerTwoButton.setVisibility(View.VISIBLE);
                 playerThreeButton.setVisibility(View.VISIBLE);
                 playerFourButton.setVisibility(View.VISIBLE);
+                scorePlayerOne.setVisibility(View.VISIBLE);
+                scorePlayerTwo.setVisibility(View.VISIBLE);
+                scorePlayerThree.setVisibility(View.VISIBLE);
+                scorePlayerFour.setVisibility(View.VISIBLE);
                 break;
         }
 
