@@ -21,10 +21,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     int turn = -1;
+    boolean clickedTwice = false;
+    Stack<Integer> turnCountStack = new Stack<>();
+    Stack<Integer> resourceTempStack = new Stack<>();
     private TextView numberOfPlayers;
     private Button playerOneButton;
     private Button playerTwoButton;
@@ -216,14 +222,32 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         turn=(turn+1)%2;
-//    scorePlayerTwo.setText(String.valueOf(turn));
 
-        if(turn==0){
-            setImage(v.getId());
-        } else if(turn==1){
-            setImage(v.getId());
-            interrupt(2);
+
+        if(turnCountStack.size()<=1) {
+            if (turn == 0 && !clickedTwice) {
+                setImage(v.getId());
+                resourceTempStack.push(v.getId());
+                turnCountStack.push(0);
+            } else if (turn == 1 && !clickedTwice) {
+                setImage(v.getId());
+                resourceTempStack.push(v.getId());
+                turnCountStack.push(1);
+            }
+            if (resourceTempStack.size() == 2) {
+
+                v.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetImage(resourceTempStack.pop());
+                        resetImage(resourceTempStack.pop());
+                        turnCountStack.clear();
+                    }
+                }, 2000);
+            }
+
         }
+
 
 
 

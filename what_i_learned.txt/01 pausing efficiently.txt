@@ -1,0 +1,17 @@
+1. v.postDelayed (View v)
+            v.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resetImage(resourceTempStack.pop());
+                    resetImage(resourceTempStack.pop());
+                }
+            }, 2000);
+
+2. Handler from android os
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                   @Override
+                   public void run() {
+                       resetImage(resourceTempStack.pop());
+                       resetImage(resourceTempStack.pop());
+                   }
+               }, 2000); // 2 seconds delay
