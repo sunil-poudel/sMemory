@@ -28,10 +28,12 @@ import java.util.concurrent.Executor;
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     int turn = -1;
-    boolean clickedTwice = false;
     Stack<Integer> turnCountStack = new Stack<>();
     Stack<Integer> resourceTempStack = new Stack<>();
     Stack<Integer> resourceStack = new Stack<>();
+    int resourceOne = 0;
+    int resourceTwo = 1;
+
     private TextView numberOfPlayers;
     private Button playerOneButton;
     private Button playerTwoButton;
@@ -225,14 +227,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         turn=(turn+1)%2;
 
         if(turnCountStack.size()<=1) {
-            if (turn == 0 && !clickedTwice) {
-                setImage(v.getId());
+            if (turn == 0) {
+                resourceOne = setImage(v.getId());
                 resourceTempStack.push(v.getId());
                 resourceStack.push(v.getId());
                 turnCountStack.push(0);
                 Log.d("SUNIL SAYS", "id: "+v.getId());
-            } else if (turn == 1 && !clickedTwice) {
-                setImage(v.getId());
+            } else if (turn == 1) {
+                resourceTwo = setImage(v.getId());
                 resourceTempStack.push(v.getId());
                 resourceStack.push(v.getId());
                 turnCountStack.push(1);
@@ -240,14 +242,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             }
             if (resourceTempStack.size() == 2) {
-                int tempResourceOne = resourceStack.pop();
-                int tempResourceTwo = resourceStack.pop();
 
                 v.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if(tempResourceOne == tempResourceTwo){
-                                Log.d("SUNIL SAYS", "clicked two same images");
+                            if(resourceOne == resourceTwo){
+                                vanishImage(resourceTempStack.pop());
+                                vanishImage(resourceTempStack.pop());
+                                turnCountStack.clear();
                             }
                             else {
                                 resetImage(resourceTempStack.pop());
@@ -286,57 +288,84 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return result;
     }
 
-    public void setImage(int resource){
+    public int setImage(int resource) {
         if (resource == R.id.image_01) {
             image01.setImageResource(imageResources[0]);
+            return imageResources[0];
         } else if (resource == R.id.image_02) {
             image02.setImageResource(imageResources[1]);
+            return imageResources[1];
         } else if (resource == R.id.image_03) {
             image03.setImageResource(imageResources[2]);
+            return imageResources[2];
         } else if (resource == R.id.image_04) {
             image04.setImageResource(imageResources[3]);
+            return imageResources[3];
         } else if (resource == R.id.image_05) {
             image05.setImageResource(imageResources[4]);
+            return imageResources[4];
         } else if (resource == R.id.image_06) {
             image06.setImageResource(imageResources[5]);
+            return imageResources[5];
         } else if (resource == R.id.image_07) {
             image07.setImageResource(imageResources[6]);
+            return imageResources[6];
         } else if (resource == R.id.image_08) {
             image08.setImageResource(imageResources[7]);
+            return imageResources[7];
         } else if (resource == R.id.image_09) {
             image09.setImageResource(imageResources[8]);
+            return imageResources[8];
         } else if (resource == R.id.image_10) {
             image10.setImageResource(imageResources[9]);
+            return imageResources[9];
         } else if (resource == R.id.image_11) {
             image11.setImageResource(imageResources[10]);
+            return imageResources[10];
         } else if (resource == R.id.image_12) {
             image12.setImageResource(imageResources[11]);
+            return imageResources[11];
         } else if (resource == R.id.image_13) {
             image13.setImageResource(imageResources[12]);
+            return imageResources[12];
         } else if (resource == R.id.image_14) {
             image14.setImageResource(imageResources[13]);
+            return imageResources[13];
         } else if (resource == R.id.image_15) {
             image15.setImageResource(imageResources[14]);
+            return imageResources[14];
         } else if (resource == R.id.image_16) {
             image16.setImageResource(imageResources[15]);
+            return imageResources[15];
         } else if (resource == R.id.image_17) {
             image17.setImageResource(imageResources[16]);
+            return imageResources[16];
         } else if (resource == R.id.image_18) {
             image18.setImageResource(imageResources[17]);
+            return imageResources[17];
         } else if (resource == R.id.image_19) {
             image19.setImageResource(imageResources[18]);
+            return imageResources[18];
         } else if (resource == R.id.image_20) {
             image20.setImageResource(imageResources[19]);
+            return imageResources[19];
         } else if (resource == R.id.image_21) {
             image21.setImageResource(imageResources[20]);
+            return imageResources[20];
         } else if (resource == R.id.image_22) {
             image22.setImageResource(imageResources[21]);
+            return imageResources[21];
         } else if (resource == R.id.image_23) {
             image23.setImageResource(imageResources[22]);
+            return imageResources[22];
         } else if (resource == R.id.image_24) {
             image24.setImageResource(imageResources[23]);
+            return imageResources[23];
         }
+        return -1; // Default return if no match found
     }
+
+
 
     public void resetImage(int resource){
         if (resource == R.id.image_01) {
@@ -390,7 +419,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void vanishImage(int resource){
+    public void vanishImage(int resource) {
         if (resource == R.id.image_01) {
             image01.setVisibility(View.INVISIBLE);
         } else if (resource == R.id.image_02) {
@@ -440,8 +469,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else if (resource == R.id.image_24) {
             image24.setVisibility(View.INVISIBLE);
         }
-
     }
-
 
 }
