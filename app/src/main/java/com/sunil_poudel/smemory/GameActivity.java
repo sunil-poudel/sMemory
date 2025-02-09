@@ -26,6 +26,12 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+    int playersCountInt = 0;
+    int playerPointer = 1;
+    int playerOnePoints = 0;
+    int playerTwoPoints = 0;
+    int playerThreePoints = 0;
+    int playerFourPoints = 0;
 
     int turn = -1;
     Stack<Integer> turnCountStack = new Stack<>();
@@ -122,7 +128,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = getIntent();
         String playersCount = intent.getStringExtra("player_count");
-        int playersCountInt = Integer.parseInt(playersCount);
+        playersCountInt = Integer.parseInt(playersCount);
         int randomKey = Integer.parseInt(intent.getStringExtra("random_key"));
 
         numberOfPlayers.setText("Number of players: "+playersCount);
@@ -252,11 +258,30 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                 vanishImage(resourceTempStack.pop());
                                 vanishImage(resourceTempStack.pop());
                                 turnCountStack.clear();
+
+
                             }
                             else {
                                 resetImage(resourceTempStack.pop());
                                 resetImage(resourceTempStack.pop());
                                 turnCountStack.clear();
+                                //i'll have to make function to make it more reliable
+//                                switch (playersCountInt){
+//                                    case 2:
+//                                        switch (playerPointer){
+//                                            case 1:
+//                                                playerOneButton.setBackgroundColor(getColor(R.color.blue));
+//                                                playerTwoButton.setBackgroundColor(getColor(R.color.green));
+//                                                break;
+//                                            case 2:
+//                                                playerTwoButton.setBackgroundColor(getColor(R.color.blue));
+//                                                playerOneButton.setBackgroundColor(getColor(R.color.green));
+//                                                break;
+//
+//                                        }
+//                                        playerPointer=(playerPointer+1)%playersCountInt;
+//                                }
+
                             }
                         }
                     }, 2000);
