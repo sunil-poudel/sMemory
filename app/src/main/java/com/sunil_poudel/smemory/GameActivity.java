@@ -233,13 +233,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 resourceStack.push(v.getId());
                 turnCountStack.push(0);
                 Log.d("SUNIL SAYS", "id: "+v.getId());
-            } else if (turn == 1) {
+            } else if (turn == 1 && v.getId()!=resourceStack.peek()) {
                 resourceTwo = setImage(v.getId());
                 resourceTempStack.push(v.getId());
                 resourceStack.push(v.getId());
                 turnCountStack.push(1);
                 Log.d("SUNIL SAYS", "id: "+v.getId());
 
+            } else if(v.getId() == resourceStack.peek()){
+                turn=0;
             }
             if (resourceTempStack.size() == 2) {
 
