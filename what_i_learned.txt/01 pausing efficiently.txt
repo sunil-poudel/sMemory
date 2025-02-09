@@ -15,3 +15,10 @@
                        resetImage(resourceTempStack.pop());
                    }
                }, 2000); // 2 seconds delay
+
+3. interrupt main thread
+        try {
+            Thread.sleep(seconds* 1000L); //this will make interrupt
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }

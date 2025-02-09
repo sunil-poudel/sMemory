@@ -31,6 +31,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     boolean clickedTwice = false;
     Stack<Integer> turnCountStack = new Stack<>();
     Stack<Integer> resourceTempStack = new Stack<>();
+    Stack<Integer> resourceStack = new Stack<>();
     private TextView numberOfPlayers;
     private Button playerOneButton;
     private Button playerTwoButton;
@@ -223,34 +224,43 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         turn=(turn+1)%2;
 
-
         if(turnCountStack.size()<=1) {
             if (turn == 0 && !clickedTwice) {
                 setImage(v.getId());
                 resourceTempStack.push(v.getId());
+                resourceStack.push(v.getId());
                 turnCountStack.push(0);
+                Log.d("SUNIL SAYS", "id: "+v.getId());
             } else if (turn == 1 && !clickedTwice) {
                 setImage(v.getId());
                 resourceTempStack.push(v.getId());
+                resourceStack.push(v.getId());
                 turnCountStack.push(1);
+                Log.d("SUNIL SAYS", "id: "+v.getId());
+
             }
             if (resourceTempStack.size() == 2) {
+                int tempResourceOne = resourceStack.pop();
+                int tempResourceTwo = resourceStack.pop();
 
                 v.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        resetImage(resourceTempStack.pop());
-                        resetImage(resourceTempStack.pop());
-                        turnCountStack.clear();
-                    }
-                }, 2000);
+                        @Override
+                        public void run() {
+                            if(tempResourceOne == tempResourceTwo){
+                                Log.d("SUNIL SAYS", "clicked two same images");
+                            }
+                            else {
+                                resetImage(resourceTempStack.pop());
+                                resetImage(resourceTempStack.pop());
+                                turnCountStack.clear();
+                            }
+                        }
+                    }, 2000);
+
+
             }
 
         }
-
-
-
-
 
     }
 
@@ -380,12 +390,57 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void interrupt(int seconds){
-        try {
-            Thread.sleep(seconds* 1000L); //this will make interrupt
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    public void vanishImage(int resource){
+        if (resource == R.id.image_01) {
+            image01.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_02) {
+            image02.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_03) {
+            image03.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_04) {
+            image04.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_05) {
+            image05.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_06) {
+            image06.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_07) {
+            image07.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_08) {
+            image08.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_09) {
+            image09.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_10) {
+            image10.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_11) {
+            image11.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_12) {
+            image12.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_13) {
+            image13.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_14) {
+            image14.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_15) {
+            image15.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_16) {
+            image16.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_17) {
+            image17.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_18) {
+            image18.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_19) {
+            image19.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_20) {
+            image20.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_21) {
+            image21.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_22) {
+            image22.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_23) {
+            image23.setVisibility(View.INVISIBLE);
+        } else if (resource == R.id.image_24) {
+            image24.setVisibility(View.INVISIBLE);
         }
+
     }
 
 
