@@ -24,6 +24,7 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
+    int turn = -1;
     private TextView numberOfPlayers;
     private Button playerOneButton;
     private Button playerTwoButton;
@@ -207,64 +208,29 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
     }
 
     //fruits and vegetables image link: https://www.squaremeals.org/Portals/8/files/FFVP/100%20fruits%20and%20veggies.pdf
     //flags image link: https://www.worldflags101.com/all-country-flags/
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.image_01) {
-        image01.setImageResource(imageResources[0]);
-    } else if (v.getId() == R.id.image_02) {
-        image02.setImageResource(imageResources[1]);
-    } else if (v.getId() == R.id.image_03) {
-        image03.setImageResource(imageResources[2]);
-    } else if (v.getId() == R.id.image_04) {
-        image04.setImageResource(imageResources[3]);
-    } else if (v.getId() == R.id.image_05) {
-        image05.setImageResource(imageResources[4]);
-    } else if (v.getId() == R.id.image_06) {
-        image06.setImageResource(imageResources[5]);
-    } else if (v.getId() == R.id.image_07) {
-        image07.setImageResource(imageResources[6]);
-    } else if (v.getId() == R.id.image_08) {
-        image08.setImageResource(imageResources[7]);
-    } else if (v.getId() == R.id.image_09) {
-        image09.setImageResource(imageResources[8]);
-    } else if (v.getId() == R.id.image_10) {
-        image10.setImageResource(imageResources[9]);
-    } else if (v.getId() == R.id.image_11) {
-        image11.setImageResource(imageResources[10]);
-    } else if (v.getId() == R.id.image_12) {
-        image12.setImageResource(imageResources[11]);
-    } else if (v.getId() == R.id.image_13) {
-        image13.setImageResource(imageResources[12]);
-    } else if (v.getId() == R.id.image_14) {
-        image14.setImageResource(imageResources[13]);
-    } else if (v.getId() == R.id.image_15) {
-        image15.setImageResource(imageResources[14]);
-    } else if (v.getId() == R.id.image_16) {
-        image16.setImageResource(imageResources[15]);
-    } else if (v.getId() == R.id.image_17) {
-        image17.setImageResource(imageResources[16]);
-    } else if (v.getId() == R.id.image_18) {
-        image18.setImageResource(imageResources[17]);
-    } else if (v.getId() == R.id.image_19) {
-        image19.setImageResource(imageResources[18]);
-    } else if (v.getId() == R.id.image_20) {
-        image20.setImageResource(imageResources[19]);
-    } else if (v.getId() == R.id.image_21) {
-        image21.setImageResource(imageResources[20]);
-    } else if (v.getId() == R.id.image_22) {
-        image22.setImageResource(imageResources[21]);
-    } else if (v.getId() == R.id.image_23) {
-        image23.setImageResource(imageResources[22]);
-    } else if (v.getId() == R.id.image_24) {
-        image24.setImageResource(imageResources[23]);
-    }
+        turn=(turn+1)%2;
+//    scorePlayerTwo.setText(String.valueOf(turn));
+
+        if(turn==0){
+            setImage(v.getId());
+        } else if(turn==1){
+            setImage(v.getId());
+            interrupt(2);
+        }
+
+
+
+
     }
 
-    public static int[] generateUniqueRandomNumbers(int count, int min, int max) {
+    public int[] generateUniqueRandomNumbers(int count, int min, int max) {
 
         List<Integer> numbers = new ArrayList<>();
         Random random = new Random();
@@ -286,8 +252,117 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return result;
     }
 
-    public void startGame(int randomKey, int[] randomFlagsFinal, int[] randomFruitsAndVegetablesFinal){
-
-
+    public void setImage(int resource){
+        if (resource == R.id.image_01) {
+            image01.setImageResource(imageResources[0]);
+        } else if (resource == R.id.image_02) {
+            image02.setImageResource(imageResources[1]);
+        } else if (resource == R.id.image_03) {
+            image03.setImageResource(imageResources[2]);
+        } else if (resource == R.id.image_04) {
+            image04.setImageResource(imageResources[3]);
+        } else if (resource == R.id.image_05) {
+            image05.setImageResource(imageResources[4]);
+        } else if (resource == R.id.image_06) {
+            image06.setImageResource(imageResources[5]);
+        } else if (resource == R.id.image_07) {
+            image07.setImageResource(imageResources[6]);
+        } else if (resource == R.id.image_08) {
+            image08.setImageResource(imageResources[7]);
+        } else if (resource == R.id.image_09) {
+            image09.setImageResource(imageResources[8]);
+        } else if (resource == R.id.image_10) {
+            image10.setImageResource(imageResources[9]);
+        } else if (resource == R.id.image_11) {
+            image11.setImageResource(imageResources[10]);
+        } else if (resource == R.id.image_12) {
+            image12.setImageResource(imageResources[11]);
+        } else if (resource == R.id.image_13) {
+            image13.setImageResource(imageResources[12]);
+        } else if (resource == R.id.image_14) {
+            image14.setImageResource(imageResources[13]);
+        } else if (resource == R.id.image_15) {
+            image15.setImageResource(imageResources[14]);
+        } else if (resource == R.id.image_16) {
+            image16.setImageResource(imageResources[15]);
+        } else if (resource == R.id.image_17) {
+            image17.setImageResource(imageResources[16]);
+        } else if (resource == R.id.image_18) {
+            image18.setImageResource(imageResources[17]);
+        } else if (resource == R.id.image_19) {
+            image19.setImageResource(imageResources[18]);
+        } else if (resource == R.id.image_20) {
+            image20.setImageResource(imageResources[19]);
+        } else if (resource == R.id.image_21) {
+            image21.setImageResource(imageResources[20]);
+        } else if (resource == R.id.image_22) {
+            image22.setImageResource(imageResources[21]);
+        } else if (resource == R.id.image_23) {
+            image23.setImageResource(imageResources[22]);
+        } else if (resource == R.id.image_24) {
+            image24.setImageResource(imageResources[23]);
+        }
     }
+
+    public void resetImage(int resource){
+        if (resource == R.id.image_01) {
+            image01.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_02) {
+            image02.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_03) {
+            image03.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_04) {
+            image04.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_05) {
+            image05.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_06) {
+            image06.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_07) {
+            image07.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_08) {
+            image08.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_09) {
+            image09.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_10) {
+            image10.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_11) {
+            image11.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_12) {
+            image12.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_13) {
+            image13.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_14) {
+            image14.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_15) {
+            image15.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_16) {
+            image16.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_17) {
+            image17.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_18) {
+            image18.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_19) {
+            image19.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_20) {
+            image20.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_21) {
+            image21.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_22) {
+            image22.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_23) {
+            image23.setImageResource(R.drawable.smemory_logo);
+        } else if (resource == R.id.image_24) {
+            image24.setImageResource(R.drawable.smemory_logo);
+        }
+    }
+
+    public void interrupt(int seconds){
+        try {
+            Thread.sleep(seconds* 1000L); //this will make interrupt
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
