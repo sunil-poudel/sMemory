@@ -258,29 +258,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                 vanishImage(resourceTempStack.pop());
                                 vanishImage(resourceTempStack.pop());
                                 turnCountStack.clear();
-
-
+                                updateScoreAndTurnColor(2, playerPointer, playersCountInt);
                             }
                             else {
                                 resetImage(resourceTempStack.pop());
                                 resetImage(resourceTempStack.pop());
                                 turnCountStack.clear();
-                                //i'll have to make function to make it more reliable
-//                                switch (playersCountInt){
-//                                    case 2:
-//                                        switch (playerPointer){
-//                                            case 1:
-//                                                playerOneButton.setBackgroundColor(getColor(R.color.blue));
-//                                                playerTwoButton.setBackgroundColor(getColor(R.color.green));
-//                                                break;
-//                                            case 2:
-//                                                playerTwoButton.setBackgroundColor(getColor(R.color.blue));
-//                                                playerOneButton.setBackgroundColor(getColor(R.color.green));
-//                                                break;
-//
-//                                        }
-//                                        playerPointer=(playerPointer+1)%playersCountInt;
-//                                }
+                                updateScoreAndTurnColor(0, playerPointer, playersCountInt);
+                                playerPointer=((playerPointer)%playersCountInt)+1;
 
                             }
                         }
@@ -495,6 +480,46 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             image23.setVisibility(View.INVISIBLE);
         } else if (resource == R.id.image_24) {
             image24.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void updateScoreAndTurnColor(int score, int currentPlayer, int playersCountInt){
+        if(score==0){
+            switch (playersCountInt){
+                case 2:
+                 switch (currentPlayer){
+                     case 1:
+                         playerOneButton.setBackgroundColor(getColor(R.color.blue));
+                         playerTwoButton.setBackgroundColor(getColor(R.color.green));
+                         break;
+                     case 2:
+                         playerTwoButton.setBackgroundColor(getColor(R.color.blue));
+                         playerOneButton.setBackgroundColor(getColor(R.color.green));
+                         break;
+                 }
+                 break;
+                case 3:
+                case 4:
+                    break;
+            }
+        } else{
+            switch (playersCountInt){
+                case 2:
+                    switch (currentPlayer){
+                        case 1:
+                            playerOnePoints+=score;
+                            scorePlayerOne.setText(String.valueOf(playerOnePoints));
+                            break;
+                        case 2:
+                            playerTwoPoints+=score;
+                            scorePlayerTwo.setText(String.valueOf(playerTwoPoints));
+                            break;
+                    }
+                    break;
+                case 3:
+                case 4:
+                    break;
+            }
         }
     }
 
