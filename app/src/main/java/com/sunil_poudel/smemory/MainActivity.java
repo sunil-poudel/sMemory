@@ -29,8 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fourPlayerButton = findViewById(R.id.four_players_button);
 
         twoPlayerButton.setOnClickListener(this);
+        twoPlayerButton.setText("Enter game now!");
         threePlayerButton.setOnClickListener(this);
+        threePlayerButton.setVisibility(View.INVISIBLE);
         fourPlayerButton.setOnClickListener(this);
+        fourPlayerButton.setVisibility(View.INVISIBLE);
 
     }
 

@@ -3,6 +3,7 @@ package com.sunil_poudel.smemory.ImageAssets;
 import com.sunil_poudel.smemory.R;
 
 public class Images {
+    //https://flagpedia.net/index
     public static int[] FLAG = {
             R.drawable.flags_001,
             R.drawable.flags_002,
@@ -255,9 +256,7 @@ public class Images {
             R.drawable.flags_249,
             R.drawable.flags_250,
             R.drawable.flags_251,
-            R.drawable.flags_252,
-            R.drawable.flags_253,
-            R.drawable.flags_254
+            R.drawable.flags_252
     } ;
     public static int[] FRUIT_OR_VEG = {
             R.drawable.fruits_and_veg_001,

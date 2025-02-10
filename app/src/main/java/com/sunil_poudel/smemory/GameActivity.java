@@ -85,7 +85,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Random random = new Random();
 
-        int[] randomFlagsTemp = generateUniqueRandomNumbers(12, 0, 253);
+        int[] randomFlagsTemp = generateUniqueRandomNumbers(12, 0, 251);
         int[] randomFruitsAndVegetablesTemp = generateUniqueRandomNumbers(12, 0, 73);
 
 //        Log.d("SUNIL SAYS", Arrays.toString(randomFlagsTemp));
