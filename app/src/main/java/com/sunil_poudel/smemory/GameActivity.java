@@ -224,6 +224,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
     }
 
     //fruits and vegetables image link: https://www.squaremeals.org/Portals/8/files/FFVP/100%20fruits%20and%20veggies.pdf
@@ -238,13 +239,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 resourceTempStack.push(v.getId());
                 resourceStack.push(v.getId());
                 turnCountStack.push(0);
-                Log.d("SUNIL SAYS", "id: "+v.getId());
+//                Log.d("SUNIL SAYS", "id: "+v.getId());
             } else if (turn == 1 && v.getId()!=resourceStack.peek()) {
                 resourceTwo = setImage(v.getId());
                 resourceTempStack.push(v.getId());
                 resourceStack.push(v.getId());
                 turnCountStack.push(1);
-                Log.d("SUNIL SAYS", "id: "+v.getId());
+//                Log.d("SUNIL SAYS", "id: "+v.getId());
 
             } else if(v.getId() == resourceStack.peek()){
                 turn=0;
@@ -259,6 +260,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                 vanishImage(resourceTempStack.pop());
                                 turnCountStack.clear();
                                 updateScoreAndTurnColor(2, playerPointer, playersCountInt);
+
+                                if(playerOnePoints!=0 || playerTwoPoints!=0 || playerThreePoints!=0 || playerFourPoints!=0){
+                                    if(playerOnePoints+playerTwoPoints+playerThreePoints+playerFourPoints == 24){
+
+                                        Intent gameOverIntent = new Intent(v.getContext(), GameOverActivity.class);
+                                        if(!equalPoints(playerOnePoints,playerTwoPoints,playerThreePoints,playerFourPoints)) {
+                                            int[] scorers = highestScorePlusScorer(playerOnePoints, playerTwoPoints, playerThreePoints, playerFourPoints);
+                                            gameOverIntent.putExtra("highestScore", String.valueOf(scorers[0]));
+                                            gameOverIntent.putExtra("highestScorer", String.valueOf(scorers[1]));
+                                        } else{
+                                            gameOverIntent.putExtra("highestScore", "1000");
+                                            gameOverIntent.putExtra("highestScorer", "1000");
+                                        }
+                                        gameOverIntent.putExtra("numberOfPlayers", String.valueOf(playersCountInt));
+                                        startActivity(gameOverIntent);
+                                        finish();
+
+                                    }
+                                }
                             }
                             else {
                                 resetImage(resourceTempStack.pop());
@@ -269,7 +289,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                             }
                         }
-                    }, 2000);
+                    }, 1000);
 
 
             }
@@ -521,6 +541,42 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     break;
             }
         }
+    }
+
+    public int[] highestScorePlusScorer(int playerOnePoints, int playerTwoPoints, int playerThreePoints, int playerFourPoints){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList = (ArrayList<Integer>) List.of(playerOnePoints, playerTwoPoints, playerThreePoints, playerFourPoints);
+        arrayList.sort(Collections.reverseOrder());
+
+        int highestScorer = 0;
+        int highestScore = arrayList.get(0);
+
+        if(highestScore == playerOnePoints){
+            highestScorer = 1;
+        } else if (highestScore == playerTwoPoints) {
+            highestScorer = 2;
+        } else if (highestScore == playerThreePoints) {
+            highestScorer = 3;
+        } else if (highestScore == playerFourPoints) {
+            highestScorer = 4;
+        }
+
+        return new int[]{highestScore, highestScorer};
+    }
+
+    public boolean equalPoints(int playerOnePoints, int playerTwoPoints, int playerThreePoints, int playerFourPoints){
+        boolean flag = false;
+        int[] points = new int[]{playerOnePoints, playerTwoPoints, playerThreePoints, playerFourPoints};
+        for(int i=0; i<points.length; i++){
+            for(int j=i+1; j<points.length; j++){
+                if (points[i] == points[j]) {
+                    flag = true;
+                    i = points.length;
+                    break;
+                }
+            }
+        }
+        return flag;
     }
 
 }
