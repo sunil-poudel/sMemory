@@ -95,17 +95,17 @@
 
     <TextView
         android:id="@+id/disclaimer"
-        android:layout_width="366dp"
-        android:layout_height="105dp"
+        android:layout_width="348dp"
+        android:layout_height="214dp"
         android:maxLines="8"
         android:padding="1dp"
         android:text="I don't own the images, this app is completely for educational purpose. I used images from following websites:\n https://flagpedia.net/ for flags \n https://www.memozor.com/ for fruits and vegetables"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.974" />
+        app:layout_constraintVertical_bias="0.972" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
