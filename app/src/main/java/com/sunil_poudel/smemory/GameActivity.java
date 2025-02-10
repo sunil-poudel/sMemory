@@ -260,25 +260,32 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                 vanishImage(resourceTempStack.pop());
                                 turnCountStack.clear();
                                 updateScoreAndTurnColor(2, playerPointer, playersCountInt);
-
+//                                playerOnePoints=20; playerTwoPoints=4; playerThreePoints=0; playerFourPoints=0;
                                 if(playerOnePoints!=0 || playerTwoPoints!=0 || playerThreePoints!=0 || playerFourPoints!=0){
                                     if(playerOnePoints+playerTwoPoints+playerThreePoints+playerFourPoints == 24){
 
                                         Intent gameOverIntent = new Intent(v.getContext(), GameOverActivity.class);
+                                        Log.d("SUNIL SAYS", "PASSES GAME OVER INTENT");
                                         if(!equalPoints(playerOnePoints,playerTwoPoints,playerThreePoints,playerFourPoints)) {
                                             int[] scorers = highestScorePlusScorer(playerOnePoints, playerTwoPoints, playerThreePoints, playerFourPoints);
+                                            Log.d("SUNIL SAYS", Arrays.toString(scorers));
                                             gameOverIntent.putExtra("highestScore", String.valueOf(scorers[0]));
                                             gameOverIntent.putExtra("highestScorer", String.valueOf(scorers[1]));
+                                            Log.d("SUNIL SAYS", "GAME OVER, points:"+scorers[1]+" scorer: "+scorers[0]);
+
                                         } else{
                                             gameOverIntent.putExtra("highestScore", "1000");
                                             gameOverIntent.putExtra("highestScorer", "1000");
+//                                            Log.d("SUNIL SAYS", "GAME OVER, DRAW ");
                                         }
                                         gameOverIntent.putExtra("numberOfPlayers", String.valueOf(playersCountInt));
+//                                        Log.d("SUNIL SAYS", "WENT UPTO HERE");
                                         startActivity(gameOverIntent);
-                                        finish();
+//                                        finish();
 
                                     }
                                 }
+
                             }
                             else {
                                 resetImage(resourceTempStack.pop());
@@ -545,7 +552,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public int[] highestScorePlusScorer(int playerOnePoints, int playerTwoPoints, int playerThreePoints, int playerFourPoints){
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList = (ArrayList<Integer>) List.of(playerOnePoints, playerTwoPoints, playerThreePoints, playerFourPoints);
+        arrayList.add(playerOnePoints);
+        arrayList.add(playerTwoPoints);
+        arrayList.add(playerThreePoints);
+        arrayList.add(playerFourPoints);
         arrayList.sort(Collections.reverseOrder());
 
         int highestScorer = 0;
@@ -561,12 +571,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             highestScorer = 4;
         }
 
+        Log.d("SUNIL SAYS", "HIGHEST SCORER->"+highestScorer+" "+"highestScore->"+ highestScore);
         return new int[]{highestScore, highestScorer};
     }
 
     public boolean equalPoints(int playerOnePoints, int playerTwoPoints, int playerThreePoints, int playerFourPoints){
         boolean flag = false;
-        int[] points = new int[]{playerOnePoints, playerTwoPoints, playerThreePoints, playerFourPoints};
+        int[] points = new int[]{playerOnePoints, playerTwoPoints};
         for(int i=0; i<points.length; i++){
             for(int j=i+1; j<points.length; j++){
                 if (points[i] == points[j]) {

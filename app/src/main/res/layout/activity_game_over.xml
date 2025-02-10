@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameOverActivity">
+    tools:context=".GameOverActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView7"
@@ -112,12 +113,12 @@
 
     <TextView
         android:id="@+id/player_x_wins_game_over"
-        android:layout_width="348dp"
-        android:layout_height="50dp"
+        android:layout_width="345dp"
+        android:layout_height="70dp"
         android:text="PLAYER X WINS!"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="40sp"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
