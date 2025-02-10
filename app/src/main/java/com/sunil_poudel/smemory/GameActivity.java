@@ -105,6 +105,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
         numberOfPlayers = findViewById(R.id.number_of_players);
+        numberOfPlayers.setVisibility(View.INVISIBLE);
 
         playerOneButton = findViewById(R.id.button_player_1);
         playerTwoButton = findViewById(R.id.button_player_2);
@@ -131,7 +132,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playersCountInt = Integer.parseInt(playersCount);
         int randomKey = Integer.parseInt(intent.getStringExtra("random_key"));
 
-        numberOfPlayers.setText("Number of players: "+playersCount);
+//        numberOfPlayers.setText("Number of players: "+playersCount);
 
         switch (playersCountInt){
             case 2:
